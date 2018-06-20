@@ -70,6 +70,35 @@ public class UsuarioController extends Controller {
         }
     }
     
+    public Usuario login(String username, String password){
+        final String QUERY = "SELECT * FROM " + BD_TABLE
+                + " WHERE username = ? AND password = ?";
+        
+        try {
+            PreparedStatement query = connection.prepareStatement(QUERY);
+            query.setString(1, username);
+            query.setString(2, password);
+            ResultSet rs = query.executeQuery();
+          
+            if(rs.next()){
+                Usuario item = new Usuario(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        null,
+                        rs.getString("nombre"),
+                        rs.getString("apellidos"),
+                        rs.getString("hash")
+                );
+                
+                return item;
+            }
+            return null;
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
     public int insert(Usuario item){
          final String QUERY = "INSERT INTO " + BD_TABLE 
                  + " (username, password, nombre, apellidos) "

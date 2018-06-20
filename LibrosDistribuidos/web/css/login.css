@@ -1,0 +1,32 @@
+.todo{
+	background-color: var(--base);
+}
+form{
+	text-align: center;
+}
+.login, .registro{
+	display: inline-block;
+	background-color: var(--fondo);
+	border-radius: 8px;
+	width: 350px;
+	height: auto;
+}
+.registro{
+	margin-top: 50px;
+}
+.login{
+	margin-top: 150px;
+}
+.registro p{
+	margin-bottom: 0px;
+}
+p{
+	font-size: 23px;
+}
+input, button{
+	font-size: 20px;
+}
+.botonAzul{
+	margin-top: 23px;
+	margin-bottom: 25px;
+}

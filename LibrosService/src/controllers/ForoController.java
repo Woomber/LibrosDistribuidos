@@ -40,7 +40,7 @@ public class ForoController extends Controller {
     }
     
     public int insert(){
-         final String QUERY = "INSERT INTO " + BD_TABLE;
+         final String QUERY = "INSERT INTO " + BD_TABLE + " VALUES ()";
         
         try {
             PreparedStatement query = connection.prepareStatement(QUERY, 

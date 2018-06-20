@@ -1,0 +1,29 @@
+:root {
+    --base: #4D1A1A;
+    --fondo: #F5F5F5;
+    --letraClara: #A48670; 
+    --botonAzul: #2A9CA1;
+    --botonRojo: #800909;
+}
+.botonAzul{
+	background-color: var(--botonAzul);
+	color: white;
+	padding: 6px;
+	cursor: pointer;
+}
+.botonRojo{
+	background-color: var(--botonAzul);
+	color: white;
+	padding: 6px;
+	cursor: pointer;
+}
+input{
+	border-radius: 8px;
+}
+body{
+	margin: 0px;
+	background-color: var(--fondo);	
+}
+button{
+	border-radius: 8px;
+}
