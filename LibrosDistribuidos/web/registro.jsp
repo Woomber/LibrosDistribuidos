@@ -7,18 +7,18 @@
 	<meta charset="utf-8">
 </head>
 <body class="todo">
-<form method="POST" action="registro.php">
+<form method="POST" action="actions/do-registro.jsp">
 	<div class="registro">
 	<h1>Registro</h1>
 	<p>Usuario</p>
-	<input type="text" name="Usuario" required="required">
+	<input type="text" name="usuario" required="required">
 	<p>Nombre</p>
 	<input type="text" name="nombre" required="required">
 	<p>Apellidos</p>
 	<input type="text" name="apellidos" required="required">
-	<p>ContraseÃ±a</p>
+	<p>Contraseña</p>
 	<input type="password" name="contrasena" required="required">
-	<p>Confirmar contraseÃ±a</p>
+	<p>Confirmar contraseña</p>
 	<input type="password" name="confContra" required="required"><br>
 	<input class="botonAzul" type="submit" name="submit" value="Registrarse">
 	</div>

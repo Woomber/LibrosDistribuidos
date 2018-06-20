@@ -16,6 +16,8 @@
     </head>
     <body>
         <h1>Ya tenemos 100 :D</h1>
+        <h2>Usuarios registrados (prueba)</h2>
+        <ul>
         <%
             // Prueba de conexión
             
@@ -23,9 +25,10 @@
             
             ArrayList<Usuario> users = client.usuarios.get();
             for(Usuario u : users){
-                out.println(u.getUsername() + "<br>");
+                out.println("<li>" + u.getUsername() + "</li>");
             }
            
          %>
+        </ul>
     </body>
 </html>
