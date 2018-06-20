@@ -15,32 +15,29 @@ import java.rmi.RemoteException;
  *
  * @author Maritza
  */
-public class CompraRMI implements CompraInterfaz {
+public class MensajeRMI implements MensajeInterfaz {
     
-    private final CompraController controller;
+    private final MensajeController controller;
     
-    public CompraRMI(){
-        controller = new CompraController();
+    public MensajeRMI(){
+        controller = new MensajeController();
     }
 
     @Override
-    public ArrayList<Compra> get() throws RemoteException {
+    public ArrayList<Mensaje> get() throws RemoteException {
         return controller.get();
     }
 
     @Override
-    public Compra getById(int id) throws RemoteException {
-       return controller.getById(id);
+    public Mensaje getById(int id) throws RemoteException {
+        return controller.getById(id);
     }
 
     @Override
-    public int insert(Compra item) throws RemoteException {
+    public int insert(Mensaje item) throws RemoteException {
         return controller.insert(item);
     }
 
-    @Override
-    public int delete(int id) throws RemoteException {
-        return controller.delete(id);
-    }
+
     
 }

@@ -23,16 +23,25 @@ public class RmiMaster {
 
         System.setProperty("java.rmi.server.hostname", "localhost");
         
-        /*CompraInterfaz compra = (CompraInterfaz)
-                UnicastRemoteObject.exportObject(new CompraRMI(), 0);*/
+        CompraInterfaz compra = (CompraInterfaz)
+                UnicastRemoteObject.exportObject(new CompraRMI(), 0);
         ForoInterfaz foro = (ForoInterfaz)
                 UnicastRemoteObject.exportObject(new ForoRMI(), 0);
+        MensajeInterfaz mensaje = (MensajeInterfaz)
+                UnicastRemoteObject.exportObject(new MensajeRMI(), 0);
+        PublicacionInterfaz publicacion = (PublicacionInterfaz)
+                UnicastRemoteObject.exportObject(new PublicacionRMI(), 0);
+        UsuarioInterfaz usuario = (UsuarioInterfaz)
+                UnicastRemoteObject.exportObject(new UsuarioRMI(), 0);
         
         LocateRegistry.createRegistry(1099);
         Registry registry = LocateRegistry.getRegistry();
 
-        //registry.bind("Compra", compra);
-        registry.bind("Foro", foro);
+        registry.bind("Compra", compra);
+        registry.bind("Foro", foro);     
+        registry.bind("Mensaje", mensaje);
+        registry.bind("Publicacion", publicacion);
+        registry.bind("Usuario", usuario);
 
         System.out.println("Servidor listo :)");
     }

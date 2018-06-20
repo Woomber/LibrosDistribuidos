@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="rmi.RmiClient"%>
-<%@page import="models.Foro"%>
+<%@page import="models.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,11 +17,15 @@
     <body>
         <h1>Ya tenemos 100 :D</h1>
         <%
+            // Prueba de conexión
+            
             RmiClient client = new RmiClient();
             
-            ArrayList<Foro> foros = client.foro.get();
-            out.println(foros.size());
-
+            ArrayList<Usuario> users = client.usuarios.get();
+            for(Usuario u : users){
+                out.println(u.getUsername() + "<br>");
+            }
+           
          %>
     </body>
 </html>

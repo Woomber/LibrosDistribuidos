@@ -17,21 +17,21 @@ import rmi.interfaces.*;
  */
 public class RmiClient {
     
-    public  CompraInterfaz compra;
-    public  ForoInterfaz foro;
-    public  MensajeInterfaz mensaje;
-    public  PublicacionInterfaz publicacion;
-    public  UsuarioInterfaz usuario;
+    public  CompraInterfaz compras;
+    public  ForoInterfaz foros;
+    public  MensajeInterfaz mensajes;
+    public  PublicacionInterfaz publicaciones;
+    public  UsuarioInterfaz usuarios;
     
     public RmiClient(){
           try {
             Registry registry = LocateRegistry.getRegistry("localhost");
 
-            compra = (CompraInterfaz) registry.lookup("Compra");
-            foro = (ForoInterfaz) registry.lookup("Foro");
-            mensaje = (MensajeInterfaz) registry.lookup("Mensaje");
-            publicacion = (PublicacionInterfaz) registry.lookup("Publicacion");
-            usuario = (UsuarioInterfaz) registry.lookup("Usuario");
+            compras = (CompraInterfaz) registry.lookup("Compra");
+            foros = (ForoInterfaz) registry.lookup("Foro");
+            mensajes = (MensajeInterfaz) registry.lookup("Mensaje");
+            publicaciones = (PublicacionInterfaz) registry.lookup("Publicacion");
+            usuarios = (UsuarioInterfaz) registry.lookup("Usuario");
 
           } catch(RemoteException | NotBoundException ex){
               System.out.println(ex.getMessage());

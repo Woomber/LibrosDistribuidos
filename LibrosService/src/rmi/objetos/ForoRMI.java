@@ -6,11 +6,10 @@
 package rmi.objetos;
 
 import java.util.ArrayList;
-import models.Compra;
 import rmi.interfaces.*;
 import controllers.*;
 import java.rmi.RemoteException;
-import models.Foro;
+import models.*;
 
 /**
  *
