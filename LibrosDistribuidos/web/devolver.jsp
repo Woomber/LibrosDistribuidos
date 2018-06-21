@@ -15,8 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
     </head>
     <body>
+        <%@ include file = "actions/check-hash.jsp" %>
         <%@ include file = "barra.jsp" %>
-        
         <div class="contenido">
             <%
             RmiClient cliente = new RmiClient();

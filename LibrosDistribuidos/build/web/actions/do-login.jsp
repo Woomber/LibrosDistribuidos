@@ -16,10 +16,14 @@ if(checkEmpty(usuario,password)){
     response.sendRedirect("../login.jsp?e=1");
     return;
 }
-
+password = Hashing.hash.sha1(password);
 RmiClient client = new RmiClient();
 Usuario u = client.usuarios.login(usuario, password);
+Double hash = Math.random()*Math.random();
+String key = Hashing.hash.sha1(hash.toString());
 if(u != null){
+    u.setHash(key);
+    client.usuarios.setHash(u.getId(), key);
     session.setAttribute("user", u);
     response.sendRedirect("../index.jsp");
 } else {

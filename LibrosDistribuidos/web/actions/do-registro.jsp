@@ -9,11 +9,12 @@
 <%
 
 Usuario u = new Usuario();
-    
+Double hash = Math.random()*Math.random();
 u.setUsername(request.getParameter("usuario"));  
 u.setNombre(request.getParameter("nombre"));  
 u.setApellidos(request.getParameter("apellidos"));  
 u.setPassword(request.getParameter("contrasena"));
+u.setHash(Hashing.hash.sha1(hash.toString()));
 String confirmar = request.getParameter("confContra"); 
 
 /*
@@ -34,6 +35,7 @@ if(checkEmpty(u.getUsername(), u.getNombre(), u.getApellidos(), u.getPassword())
 }
 
 RmiClient client = new RmiClient();
+u.setPassword(Hashing.hash.sha1(u.getPassword()));
 if(client.usuarios.insert(u) != 0){
     response.sendRedirect("../login.jsp");
 } else {
