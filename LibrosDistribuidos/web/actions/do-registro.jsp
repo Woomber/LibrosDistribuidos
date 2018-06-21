@@ -34,6 +34,7 @@ if(checkEmpty(u.getUsername(), u.getNombre(), u.getApellidos(), u.getPassword())
 }
 
 RmiClient client = new RmiClient();
+u.setPassword(Hashing.hash.sha1(u.getPassword()));
 if(client.usuarios.insert(u) != 0){
     response.sendRedirect("../login.jsp");
 } else {
