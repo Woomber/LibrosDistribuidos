@@ -98,7 +98,7 @@ public class PublicacionController extends Controller {
     }
     
     public int updateEstado(int id, boolean estado){
-        final String QUERY = "UPDATE" + BD_TABLE 
+        final String QUERY = "UPDATE " + BD_TABLE 
                  + " SET estado = ? "
                  + " WHERE id = ?";
         
