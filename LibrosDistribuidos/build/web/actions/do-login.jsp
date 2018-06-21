@@ -13,7 +13,7 @@ String password = request.getParameter("contrasena");
 
 
 if(checkEmpty(usuario,password)){
-    response.sendRedirect("../registro.jsp?e=2");
+    response.sendRedirect("../login.jsp?e=1");
     return;
 }
 
