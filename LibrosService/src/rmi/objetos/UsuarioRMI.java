@@ -42,5 +42,10 @@ public class UsuarioRMI implements UsuarioInterfaz {
     public int insert(Usuario item) throws RemoteException {
         return controller.insert(item);
     }    
+
+    @Override
+    public int setHash(int id, String hash) throws RemoteException {
+        return controller.setHash(id, hash);
+    }
     
 }
