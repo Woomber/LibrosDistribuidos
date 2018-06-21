@@ -16,6 +16,14 @@
 <head>
 	<title>Pubicaciones</title>
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
+        <script>
+            function comprar(id){
+                var answer = confirm("¿Está seguro de comprar el producto?")
+                if(answer==true){
+                    window.location.replace("comprar.jsp?id="+id)
+                }
+            }
+        </script>
 </head>
 <body>
 	<%@ include file = "barra.jsp" %>
@@ -34,17 +42,19 @@
                         <% out.print(publicacion.getPrecio()); %>
                     </p>
                     <% if(publicacion.isEstado()){ 
+                        
                         List<Compra> compras = cliente.compras.get();
                         Compra compra = null;
                         Usuario usuario = (Usuario)request.getSession().getAttribute("user");
                         if(usuario!=null){
-                        for(Compra x:compras){
-                            int days = Days.daysBetween(new DateTime(x.getFecha().getTime()), new DateTime()).getDays();
-                            if(days>=3 && x.getIdUsuario()==usuario.getId()){
-                                compra = x;
-                                break;
+                            for(Compra x:compras){
+                                int days = Days.daysBetween(new DateTime(x.getFecha().getTime()), new DateTime()).getDays();
+                                if(days<=3 && x.getIdUsuario()==usuario.getId()){
+                                    
+                                    compra = x;
+                                    break;
+                                }
                             }
-                        }
                         }
                         if(compra==null){
                     %>
@@ -54,7 +64,7 @@
                     <button class="picar">Devolver</button>
                     <%}
                      }else if(request.getSession().getAttribute("user")!=null){%>
-                    <button class="picar">Comprar</button>
+                     <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>
                     <%}%>
                 </div>
             <%}%>
