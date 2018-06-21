@@ -19,8 +19,14 @@
         <script>
             function comprar(id){
                 var answer = confirm("¿Está seguro de comprar el producto?")
-                if(answer==true){
+                if(answer){
                     window.location.replace("comprar.jsp?id="+id)
+                }
+            }
+            function devolver(id){
+                var answer = confirm("¿Está seguro de devolver el producto?")
+                if(answer){
+                    window.location.replace("devolver.jsp?id="+id)
                 }
             }
         </script>
@@ -61,7 +67,7 @@
                         
                         <div class="estado">Comprado</div>
                     <%}else{%>
-                    <button class="picar">Devolver</button>
+                    <button class="picar" onclick="devolver(<%out.print(compra.getId());%>)">Devolver</button>
                     <%}
                      }else if(request.getSession().getAttribute("user")!=null){%>
                      <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>

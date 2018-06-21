@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pubicaciones</title>
+        <title>Compra</title>
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
     </head>
     <body>

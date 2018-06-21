@@ -1,11 +1,9 @@
 <%-- 
-    Document   : comprar
-    Created on : Jun 21, 2018, 11:51:35 AM
+    Document   : devolver
+    Created on : Jun 21, 2018, 12:18:18 PM
     Author     : Kevin Alan Martinez Virgen 14300260 8B1
 --%>
 
-<%@page import="models.Publicacion"%>
-<%@page import="models.Usuario"%>
 <%@page import="models.Compra"%>
 <%@page import="rmi.RmiClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Compra</title>
+        <title>Devolución</title>
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
     </head>
     <body>
@@ -22,20 +20,18 @@
         <div class="contenido">
             <%
             RmiClient cliente = new RmiClient();
-            Compra compra = new Compra();
             int id = Integer.parseInt(request.getParameter("id"));
-            compra.setIdPublicacion(id);
-            Usuario usuario = (Usuario)request.getSession().getAttribute("user");
-            compra.setIdUsuario(usuario.getId());
-            if(cliente.compras.insert(compra)>0){
-               cliente.publicaciones.updateEstado(id, true);
+            Compra compra = cliente.compras.getById(id);
+            
+            if(cliente.compras.delete(id)>0){
+               cliente.publicaciones.updateEstado(compra.getIdPublicacion(), false);
             %>
             <h1>
-                Producto comprado con éxito
+                Producto devuelto con éxito
             </h1>
             <%}else{%>
             <h1>
-                Error al comprar
+                Error al devolver
             </h1>
             <%}%>
             <a href="index.jsp">Regresar al inicio</a>
