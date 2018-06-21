@@ -20,5 +20,6 @@ public interface UsuarioInterfaz extends Remote {
     public Usuario getById(int id) throws RemoteException;
     public Usuario login(String username, String password) throws RemoteException;
     public int insert(Usuario item) throws RemoteException;
+    public int setHash(int id, String hash) throws RemoteException;
     
 }

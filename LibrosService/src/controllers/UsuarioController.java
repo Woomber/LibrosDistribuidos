@@ -123,4 +123,22 @@ public class UsuarioController extends Controller {
             return 0;
         }
     }
+    
+    public int setHash(int id, String hash){
+        final String QUERY = "UPDATE " + BD_TABLE 
+                 + " SET hash = ? "
+                 + " WHERE id = ?";
+        
+        try {
+            PreparedStatement query = connection.prepareStatement(QUERY, 
+                    Statement.RETURN_GENERATED_KEYS);
+            query.setString(1, hash);
+            query.setInt(2, id);
+            return query.executeUpdate();
+            
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            return 0;
+        }
+    }
 }
