@@ -1,3 +1,16 @@
+<%@page import="org.joda.time.DateTime"%>
+<%@page import="org.joda.time.Minutes"%>
+<%@page import="org.joda.time.Days"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="models.Usuario"%>
+<%@page import="models.Compra"%>
+<%@page import="rmi.RmiClient"%>
+<%@page import="java.util.List"%>
+<%@page import="models.Publicacion"%>
+<!--%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,23 +19,45 @@
 </head>
 <body>
 	<%@ include file = "barra.jsp" %>
+        <%  RmiClient cliente = new RmiClient();
+            List<Publicacion> publicaciones = cliente.publicaciones.get(); %>
 	<div class="contenido">
-		<div class="publicacion">
-			<p class="texto">Tesxto</p>
-			<p class="precio">precio$</p>
-			<!--<button class="picar" onclick="">Solicitar</button>
+            <!--<button class="picar" onclick="">Solicitar</button>
 			<div class="estado">Vendido</div>
 			<div class="estado">Comprado</div>-->
-			<button class="picar" onclick="">Devolver</button>
-		</div>
-		<div class="publicacion">
-			<p class="texto">Tesxto</p>
-			<p class="precio">precio$</p>
-			<!--<button class="picar" onclick="">Solicitar</button>
-			<div class="estado">Vendido</div>-->
-			<div class="estado">Comprado</div>
-			<!--<button class="picar" onclick="">Devolver</button>-->
-		</div>
+            <% for(Publicacion publicacion:publicaciones){ %>
+                <div class="publicacion">
+                    <p class="texto">
+                        <% out.print(publicacion.getTexto()); %>
+                    </p>
+                    <p class="precio">
+                        <% out.print(publicacion.getPrecio()); %>
+                    </p>
+                    <% if(publicacion.isEstado()){ 
+                        List<Compra> compras = cliente.compras.get();
+                        Compra compra = null;
+                        Usuario usuario = (Usuario)request.getSession().getAttribute("user");
+                        if(usuario!=null){
+                        for(Compra x:compras){
+                            int days = Days.daysBetween(new DateTime(x.getFecha().getTime()), new DateTime()).getDays();
+                            if(days>=3 && x.getIdUsuario()==usuario.getId()){
+                                compra = x;
+                                break;
+                            }
+                        }
+                        }
+                        if(compra==null){
+                    %>
+                        
+                        <div class="estado">Comprado</div>
+                    <%}else{%>
+                    <button class="picar">Devolver</button>
+                    <%}
+                     }else if(request.getSession().getAttribute("user")!=null){%>
+                    <button class="picar">Comprar</button>
+                    <%}%>
+                </div>
+            <%}%>
 	</div>
 </body>
 </html>
