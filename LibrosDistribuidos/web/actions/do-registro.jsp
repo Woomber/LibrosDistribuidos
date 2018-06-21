@@ -9,11 +9,12 @@
 <%
 
 Usuario u = new Usuario();
-    
+Double hash = Math.random()*Math.random();
 u.setUsername(request.getParameter("usuario"));  
 u.setNombre(request.getParameter("nombre"));  
 u.setApellidos(request.getParameter("apellidos"));  
 u.setPassword(request.getParameter("contrasena"));
+u.setHash(Hashing.hash.sha1(hash.toString()));
 String confirmar = request.getParameter("confContra"); 
 
 /*

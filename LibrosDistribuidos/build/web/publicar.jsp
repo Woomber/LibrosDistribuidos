@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+        <%@ include file = "actions/check-hash.jsp" %>
 	<%@ include file = "barra.jsp" %>
 	<form method="POST" action="">
 	<div class="contenido">
