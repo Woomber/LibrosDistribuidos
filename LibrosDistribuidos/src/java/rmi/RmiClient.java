@@ -22,6 +22,7 @@ public class RmiClient {
     public  MensajeInterfaz mensajes;
     public  PublicacionInterfaz publicaciones;
     public  UsuarioInterfaz usuarios;
+    public  MonederoInterfaz monederos;
     
     public RmiClient(){
           try {
@@ -32,6 +33,7 @@ public class RmiClient {
             mensajes = (MensajeInterfaz) registry.lookup("Mensaje");
             publicaciones = (PublicacionInterfaz) registry.lookup("Publicacion");
             usuarios = (UsuarioInterfaz) registry.lookup("Usuario");
+            monederos = (MonederoInterfaz) registry.lookup("Monedero");
 
           } catch(RemoteException | NotBoundException ex){
               System.out.println(ex.getMessage());
