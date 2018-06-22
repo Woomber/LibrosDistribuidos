@@ -22,6 +22,11 @@
         
         <div class="contenido">
             <%
+            if(session.getAttribute("user") == null){
+                response.sendRedirect("publicaciones.jsp?e=1");
+                return;
+            }
+                
             RmiClient cliente = new RmiClient();
             Compra compra = new Compra();
             int id = Integer.parseInt(request.getParameter("id"));

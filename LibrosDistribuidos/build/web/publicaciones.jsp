@@ -15,6 +15,7 @@
 <html>
 <head>
 	<title>Pubicaciones</title>
+        <%@ include file = "actions/check-hash.jsp" %>
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
         <script>
             function comprar(id){
@@ -32,7 +33,6 @@
         </script>
 </head>
 <body>
-	<%@ include file = "actions/check-hash.jsp" %>
 	<%@ include file = "barra.jsp" %>
         <%  RmiClient cliente = new RmiClient();
             List<Publicacion> publicaciones;
@@ -74,9 +74,11 @@
                     <%}else{%>
                     <button class="picar" onclick="devolver(<%out.print(compra.getId());%>)">Devolver</button>
                     <%}
-                     }else if(request.getSession().getAttribute("user")!=null){%>
-                     <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>
-                    <%}%>
+                     }else if(request.getSession().getAttribute("user")!=null){
+                        if(((Usuario)session.getAttribute("user")).getId() != publicacion.getIdUsuario()) { %>
+                        <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>
+                        <%}
+                    }%>
                 </div>
             <%}%>
 	</div>
