@@ -17,6 +17,6 @@
         <% if(session.getAttribute("user") != null){
             %>
             <div class="publicar" onclick="window.location='publicar.jsp'">Publicar</div>
-            <div class="foro" onclick="window.location='foro.jsp'">Foro</div>
         <% } %>
+        <div class="foro" onclick="window.location='foro.jsp'">Foro</div>
 </div>
