@@ -33,6 +33,8 @@ public class RmiMaster {
                 UnicastRemoteObject.exportObject(new PublicacionRMI(), 0);
         UsuarioInterfaz usuario = (UsuarioInterfaz)
                 UnicastRemoteObject.exportObject(new UsuarioRMI(), 0);
+        MonederoInterfaz monedero = (MonederoInterfaz)
+                UnicastRemoteObject.exportObject(new MonederoRMI(), 0);
         
         LocateRegistry.createRegistry(1099);
         Registry registry = LocateRegistry.getRegistry();
@@ -42,6 +44,7 @@ public class RmiMaster {
         registry.bind("Mensaje", mensaje);
         registry.bind("Publicacion", publicacion);
         registry.bind("Usuario", usuario);
+        registry.bind("Monedero", monedero);
 
         System.out.println("Servidor listo :)");
     }
