@@ -9,7 +9,7 @@
 <%@page import="rmi.RmiClient"%>
 <%
 if(session.getAttribute("user") == null){
-    response.sendRedirect("../publicaciones.jsp");
+    response.sendRedirect("../publicaciones.jsp?e=1");
     return;
 }
     

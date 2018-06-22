@@ -19,6 +19,11 @@
         <%@ include file = "barra.jsp" %>
         <div class="contenido">
             <%
+            if(session.getAttribute("user") == null){
+                response.sendRedirect("publicaciones.jsp?e=1");
+                return;
+            }
+            
             RmiClient cliente = new RmiClient();
             int id = Integer.parseInt(request.getParameter("id"));
             Compra compra = cliente.compras.getById(id);

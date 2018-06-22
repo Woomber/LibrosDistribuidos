@@ -8,7 +8,7 @@
 <%@page import="models.*"%>
 <%
 if(session.getAttribute("user") == null){
-    response.sendRedirect("../publicaciones.jsp");
+    response.sendRedirect("../publicaciones.jsp?e=1");
     return;
 }
 Usuario u = (Usuario) session.getAttribute("user");
