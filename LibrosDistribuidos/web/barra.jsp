@@ -14,6 +14,9 @@
             <form method="POST" action="publicaciones.jsp"><input type="text" name="buscar" placeholder="Buscar">
                 <input type="submit" value="Buscar"><img src=""></form>
 	</div>
-	<div class="publicar" onclick="window.location='publicar.jsp'">Publicar</div>
-	<div class="foro" onclick="window.location='foro.jsp'">Foro</div>
+        <% if(session.getAttribute("user") != null){
+            %>
+            <div class="publicar" onclick="window.location='publicar.jsp'">Publicar</div>
+            <div class="foro" onclick="window.location='foro.jsp'">Foro</div>
+        <% } %>
 </div>

@@ -75,9 +75,11 @@
                     <%}else{%>
                     <button class="picar" onclick="devolver(<%out.print(compra.getId());%>)">Devolver</button>
                     <%}
-                     }else if(request.getSession().getAttribute("user")!=null){%>
-                     <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>
-                    <%}%>
+                     }else if(request.getSession().getAttribute("user")!=null){
+                        if(((Usuario)session.getAttribute("user")).getId() != publicacion.getIdUsuario()) { %>
+                        <button class="picar" onclick="comprar(<%out.print(publicacion.getId());%>)">Comprar</button>
+                        <%}
+                    }%>
                 </div>
             <%}%>
 	</div>

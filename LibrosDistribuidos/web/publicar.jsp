@@ -6,9 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+    <%
+    if(session.getAttribute("user") == null){
+        response.sendRedirect("publicaciones.jsp");
+        return;
+    } %>
+    
         <%@ include file = "actions/check-hash.jsp" %>
 	<%@ include file = "barra.jsp" %>
-	<form method="POST" action="">
+	<form method="POST" action="actions/do-publicar.jsp">
 	<div class="contenido">
 		<h1>Publicar</h1>
 		<h3>Descripcion</h3>
