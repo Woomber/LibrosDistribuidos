@@ -43,8 +43,12 @@ public class PublicacionRMI implements PublicacionInterfaz {
         return controller.updateEstado(id, estado);
     }
 
+    @Override
+    public ArrayList<Publicacion> search(String consulta) throws RemoteException {
+        return controller.search(consulta);
+    }
+
    
 
-
-    
+ 
 }

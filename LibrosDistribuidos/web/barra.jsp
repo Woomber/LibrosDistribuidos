@@ -11,8 +11,8 @@
             <div class="login" onclick = "window.location='actions/do-logout.jsp'">Cerrar sesión</div>
             <% } %>
 	<div class="buscar">
-            <form><input type="text" name="buscar" placeholder="buscar">
-                <img src=""></form>
+            <form method="POST" action="publicaciones.jsp"><input type="text" name="buscar" placeholder="Buscar">
+                <input type="submit" value="Buscar"><img src=""></form>
 	</div>
 	<div class="publicar" onclick="window.location='publicar.jsp'">Publicar</div>
 	<div class="foro" onclick="window.location='foro.jsp'">Foro</div>

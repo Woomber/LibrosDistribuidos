@@ -35,7 +35,12 @@
 	<%@ include file = "actions/check-hash.jsp" %>
 	<%@ include file = "barra.jsp" %>
         <%  RmiClient cliente = new RmiClient();
-            List<Publicacion> publicaciones = cliente.publicaciones.get(); %>
+            List<Publicacion> publicaciones;
+            if(request.getParameter("buscar") == null)
+                publicaciones = cliente.publicaciones.get();
+            else
+                publicaciones = cliente.publicaciones.search(request.getParameter("buscar").toString());
+            %>
 	<div class="contenido">
             <!--<button class="picar" onclick="">Solicitar</button>
 			<div class="estado">Vendido</div>

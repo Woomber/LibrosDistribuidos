@@ -20,5 +20,5 @@ public interface PublicacionInterfaz extends Remote {
     public Publicacion getById(int id) throws RemoteException;
     public int insert(Publicacion item) throws RemoteException;
     public int updateEstado(int id, boolean estado) throws RemoteException;
-    
+    public ArrayList<Publicacion> search(String consulta) throws RemoteException;
 }

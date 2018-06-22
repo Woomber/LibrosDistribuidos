@@ -5,9 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.Date;
 import models.Publicacion;
-import models.Usuario;
 
 /**
  *
@@ -112,6 +110,35 @@ public class PublicacionController extends Controller {
         } catch (SQLException ex){
             System.out.println(ex.getMessage());
             return 0;
+        }
+    }
+    
+        public ArrayList<Publicacion> search(String consulta){
+        final String QUERY = "SELECT * FROM " + BD_TABLE + " WHERE texto LIKE ?";
+        
+        try {
+            PreparedStatement query = connection.prepareStatement(QUERY);
+            query.setString(1, "%" + consulta + "%");
+            ResultSet rs = query.executeQuery();
+            
+            ArrayList<Publicacion> resultados = new ArrayList<>();
+            
+            while(rs.next()){
+                Publicacion item = new Publicacion(
+                        rs.getInt("id"),
+                        rs.getString("texto"),
+                        rs.getDate("fecha"),
+                        rs.getBoolean("estado"),
+                        rs.getDouble("precio"),
+                        rs.getInt("id_usuario")
+                );
+                
+                resultados.add(item);
+            }
+            return resultados;
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            return null;
         }
     }
 }
