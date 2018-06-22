@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/barra.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<%@ include file = "actions/check-hash.jsp" %>
 <div class="barra">
 	<div class="inicio" onclick="window.location='publicaciones.jsp'">Inicio</div>
         <% if(session.getAttribute("user") == null){
