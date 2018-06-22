@@ -1,3 +1,6 @@
+<%@page import="models.Monedero"%>
+<%@page import="rmi.RmiClient"%>
+<%@page import="models.Usuario"%>
 <link rel="stylesheet" type="text/css" href="css/barra.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <div class="barra">
@@ -7,6 +10,11 @@
                 <div class="login" onclick="window.location='login.jsp'">Iniciar sesión</div>
             <%
         } else {
+            Usuario usr = (Usuario)session.getAttribute("user");
+            Monedero monedero = client.monederos.getByUsuario(usr.getId());
+            String dinero = Hashing.AES.decrypt(Hashing.hash.sha1(usr.getUsername()+usr.getId()).substring(0, 16), "RandomInitVector", monedero.getDinero());
+            
+            out.print("Monedero: "+dinero);
             %>
             <div class="login" onclick = "window.location='actions/do-logout.jsp'">Cerrar sesión</div>
             <% } %>

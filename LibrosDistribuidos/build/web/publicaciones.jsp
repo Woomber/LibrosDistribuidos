@@ -61,8 +61,7 @@
                         if(usuario!=null){
                             for(Compra x:compras){
                                 int days = Days.daysBetween(new DateTime(x.getFecha().getTime()), new DateTime()).getDays();
-                                if(days<=3 && x.getIdUsuario()==usuario.getId()){
-                                    
+                                if(days<=3 && x.getIdUsuario()==usuario.getId()&& x.getIdPublicacion()==publicacion.getId()){
                                     compra = x;
                                     break;
                                 }

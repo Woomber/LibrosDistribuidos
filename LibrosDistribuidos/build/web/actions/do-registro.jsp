@@ -4,6 +4,7 @@
     Author     : Yael Arturo Chavoya Andalón 14300094
 --%>
 
+<%@page import="models.Monedero"%>
 <%@page import="models.Usuario"%>
 <%@page import="rmi.RmiClient"%>
 <%
@@ -14,7 +15,6 @@ u.setUsername(request.getParameter("usuario"));
 u.setNombre(request.getParameter("nombre"));  
 u.setApellidos(request.getParameter("apellidos"));  
 u.setPassword(request.getParameter("contrasena"));
-u.setHash(Hashing.hash.sha1(hash.toString()));
 String confirmar = request.getParameter("confContra"); 
 
 /*
@@ -36,7 +36,14 @@ if(checkEmpty(u.getUsername(), u.getNombre(), u.getApellidos(), u.getPassword())
 
 RmiClient client = new RmiClient();
 u.setPassword(Hashing.hash.sha1(u.getPassword()));
-if(client.usuarios.insert(u) != 0){
+int id = client.usuarios.insert(u);
+if(id!= 0){
+    client.usuarios.setHash(id, Hashing.hash.sha1(hash.toString()));
+    Monedero monedero = new Monedero();
+    String aes = Hashing.AES.encrypt(Hashing.hash.sha1(u.getUsername()+id).substring(0, 16), "RandomInitVector", 100+"");
+    monedero.setDinero(aes);
+    monedero.setIdUsuario(id);
+    client.monederos.insert(monedero);
     response.sendRedirect("../login.jsp");
 } else {
     response.sendRedirect("../registro.jsp?e=3");

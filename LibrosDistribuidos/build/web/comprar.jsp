@@ -26,18 +26,41 @@
             Compra compra = new Compra();
             int id = Integer.parseInt(request.getParameter("id"));
             compra.setIdPublicacion(id);
-            Usuario usuario = (Usuario)request.getSession().getAttribute("user");
-            compra.setIdUsuario(usuario.getId());
+            
+            Usuario usr = (Usuario)request.getSession().getAttribute("user");
+            Monedero monedero = client.monederos.getByUsuario(usr.getId());
+            compra.setIdUsuario(usr.getId());
+            String dinero = Hashing.AES.decrypt(Hashing.hash.sha1(usr.getUsername()+usr.getId()).substring(0, 16), "RandomInitVector", monedero.getDinero());
+            int money = Integer.parseInt(dinero);
+            
+            Publicacion publicacion = cliente.publicaciones.getById(id);
+            
+            Usuario publicador = client.usuarios.getById(publicacion.getIdUsuario());
+            Monedero monedero_pub = client.monederos.getByUsuario(publicador.getId());
+            String dinero_pub = Hashing.AES.decrypt(Hashing.hash.sha1(publicador.getUsername()+publicador.getId()).substring(0, 16), "RandomInitVector", monedero_pub.getDinero());
+            int money_pub = Integer.parseInt(dinero_pub);
+            
+            if(money>=publicacion.getPrecio()){
             if(cliente.compras.insert(compra)>0){
                cliente.publicaciones.updateEstado(id, true);
+               money-=publicacion.getPrecio();
+               dinero = Hashing.AES.encrypt(Hashing.hash.sha1(usr.getUsername()+usr.getId()).substring(0, 16), "RandomInitVector", money+"");
+               money_pub+=publicacion.getPrecio();
+               dinero_pub = Hashing.AES.encrypt(Hashing.hash.sha1(publicador.getUsername()+publicador.getId()).substring(0, 16), "RandomInitVector", money_pub+"");
+               client.monederos.updateDinero(usr.getId(), dinero);
+               client.monederos.updateDinero(publicador.getId(), dinero_pub);
             %>
             <h1>
                 Producto comprado con éxito
             </h1>
             <%}else{%>
             <h1>
-                Error al comprar
+                El producto ya habías sido comprado previamente
             </h1>
+            <%}}else{%>
+            <h1>
+                No cuenta con suficientes recursos en su monedero
+            </h1>    
             <%}%>
             <a href="index.jsp">Regresar al inicio</a>
         </div>
