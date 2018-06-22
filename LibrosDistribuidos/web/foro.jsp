@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
 	<title>Foro</title>
@@ -8,27 +8,21 @@
 	<%@ include file = "barra.jsp" %>
 
 	<div class="foroP">
-		<h3>Preguntas</h3>
-		<div class="pregunta" onclick="">Pregunta</div>
-		<div class="pregunta" onclick="">Pregunta</div>
-		<div class="pregunta" onclick="">Pregunta</div>
-	</div>
 
-	<div class="contenido">
-		<h3>PREGUNTA</h3>
-	<div class="Respuestas">
-		<div class="res">
-			<p class="usuario">Usuario</p>
-			<p class="texto">ls odjoseo odjf sojf osjsdl ei ei ei</p>
+	<h1>Foro <button class="botonAzul" onclick="window.location='nuevaPregunta.jsp'">Nueva pregunta</button></h1><br>
+
+		<div class="pregunta" onclick="window.location='respuestasForo.jsp'">
+			<h2>Pregunta</h2>
+			<p>Primera respuesta</p>
 		</div>
-	</div>
-	
-	<div class="contestar">
-		<form method="POST" action="">
-			<textarea name="contestar" required="required"></textarea>
-			<input type="submit" name="submit" value="Enviar" class="botonAzul">
-		</form>
-	</div>
+		<div class="pregunta" onclick="window.location='respuestasForo.jsp'">
+			<h2>Pregunta</h2>
+			<p>Primera respuesta</p>
+		</div>
+		<div class="pregunta" onclick="window.location='respuestasForo.jsp'">
+			<h2>Pregunta</h2>
+			<p>Primera respuesta</p>
+		</div>
 	</div>
 </body>
 </html>

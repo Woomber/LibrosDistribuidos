@@ -1,43 +1,41 @@
-.foroP, .contenido{
+.foroP, .contenido, form{
 	display: inline-block;
-	float: left;
+	width: 100%;
+	text-align: center;
 }
-.foroP{
-	background-color: var(--letraClara);
-	width: 20%;
-	height: inherit;
-	padding: 10px;
-	padding-bottom: 20px;
-	margin-top: -5px;
+.pregunta{
+	width: 80%;
+	background-color: white;
+	margin-bottom: 15px;
+	border-radius: 8px;
+	display: inline-block;
 }
-.contenido{
-	padding: 15px;
-	width: 70%;
+.pregunta:hover{
+	color: var(--botonAzul);
+	cursor: pointer;
+}
+button{
+	display: inline-block;	
 }
 .Respuestas{
 	background-color: white;
-	width: 90%;
+	width: 80%;
 	border-radius: 8px;
-	margin-left: 30px;
 	padding: 1px;
 	margin-bottom: 15px;
+	display: inline-block;
+	text-align: left;
+	padding-left: 10px;
 }
 .contestar{
 	width: 90%;
 	margin-left: 30px;
+	display: inline-block;
 }
-textarea{
-	width: 100%;
+textarea, .nuevaPre{
+	width: 85%;
 	border-radius: 8px;
 	font-size: 18px;
 	margin-bottom: 5px;
 }
-.pregunta{
-	border-bottom: 1px solid;
-	padding-top: 3px;
-	padding-bottom: 3px;
-}
-.pregunta:hover{
-	color: white;
-	cursor: pointer;
-}
+
