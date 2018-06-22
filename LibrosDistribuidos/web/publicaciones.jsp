@@ -15,6 +15,7 @@
 <html>
 <head>
 	<title>Pubicaciones</title>
+        <%@ include file = "actions/check-hash.jsp" %>
 	<link rel="stylesheet" type="text/css" href="css/publicaciones.css">
         <script>
             function comprar(id){
