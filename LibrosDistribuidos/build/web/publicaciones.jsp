@@ -33,7 +33,6 @@
         </script>
 </head>
 <body>
-	<%@ include file = "actions/check-hash.jsp" %>
 	<%@ include file = "barra.jsp" %>
         <%  RmiClient cliente = new RmiClient();
             List<Publicacion> publicaciones;
